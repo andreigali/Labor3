@@ -1,38 +1,45 @@
 package laden;
 
-public class Produkt
+import static java.lang.Math.floor;
+
+public class Product
 {
-    private int basisPreis;
-    private int alter;
+    private double basePrice;
+    private int age;
 
-    public Produkt(int basisPreis, int alter) {
-        this.basisPreis = basisPreis;
-        this.alter = alter;
+    public Product(double basePrice, int age) {
+        setBasePrice(basePrice);
+        this.age = age;
     }
 
-    public int getBasisPreis() {
-        return basisPreis;
+    public double getBasePrice() {
+        return basePrice;
     }
 
-    public void setBasisPreis(int basisPreis) {
-        this.basisPreis = basisPreis;
+    public void setBasePrice(double basePrice) {
+        if((basePrice/0.05d) % 1 == 0)
+            this.basePrice = basePrice;
+        else
+        {
+            this.basePrice = (floor(basePrice/0.05d)+1)*0.05d;
+        }
     }
 
-    public int getAlter() {
-        return alter;
+    public int getAge() {
+        return age;
     }
 
-    public void setAlter(int alter) {
-        this.alter = alter;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public float getDiscountPrice()
+    public double getDiscountPrice()
     {
-        if(alter>20)
-            return basisPreis*0.8f;
-        if(alter>10)
-            return basisPreis*0.9f;
-        return basisPreis;
+        if(age >20)
+            return basePrice * 0.8d;
+        if(age >10)
+            return basePrice * 0.9d;
+        return basePrice;
     }
 }
 
